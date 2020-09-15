@@ -19,25 +19,34 @@
 <script src="./static/js/index.js"></script>
 
 <body>
-  <div class="container-fluid"></div>
-      <div class="row">
-          <div id='size-div' class="col-md-8">
-            <div style='position: relative; display: inline-block;'>
-                <div > <svg id = 'background_layer'></svg> </div>
-                <div style='position: absolute; top: 0; left: 0;'> <svg id = 'foreground_layer'></svg> </div>
-            </div>
-          </div>          
-        </div>
+    <div class="container-fluid"></div>
 
-        <div class="row my-2">
-            <div class="col-md-12 text-center">
-                <button class="btn btn-primary" onclick="prev()">Prev</button>
-                <button class="btn btn-primary" onclick="next()">Next</button>
-                Index: <span id="index"></span>
-            </div>
-        </div>
+    <div class="text-center">
+        <h4>Foraging Ants</h4>
+    </div>
 
-  </div>
+    <div class="row my-2 mx-2">
+        <div id='size-div' class="col-md-8">
+        <div style='position: relative; display: inline-block;'>
+            <div > <svg id = 'background_layer'></svg> </div>
+            <div style='position: absolute; top: 0; left: 0;'> <svg id = 'foreground_layer'></svg> </div>
+        </div>
+        </div>          
+    </div>
+
+    <div class="my-2 text-center">
+        Index: <span id="index"></span>
+    </div>
+
+    <div class="my-2 mx-2 test-center">
+        <input type="range" name="" id="time-slider" style="width: 100%;">
+    </div>
+
+    <div class="my-2 text-center">
+        <button class="btn btn-primary" onclick="prev()">Prev</button>
+        <button class="btn btn-primary" onclick="next()">Next</button>
+    </div>
+
 </body>
 
 <script>

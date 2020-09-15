@@ -20,7 +20,8 @@ Schematic.prototype.setup = function(params){
     this.rows = params.rows;
 
     var div_width = parseFloat(d3.select('#'+params.div).style('width'));
-    this.box_size = 0.95*div_width/this.columns;
+    // this.box_size = 0.95*div_width/this.columns;
+    this.box_size = 18;
 
     this.svg_width = this.box_size*this.columns;
     this.svg_height = this.box_size*this.rows;
@@ -95,12 +96,12 @@ Schematic.prototype.update = function(world){
     }
 
     // Dispalying home and food
-    // for(var y = 0; y < this.rows; y++){
-    //     for(var x = 0; x < this.columns; x++){
-    //         var cell = world.grid[y][x];
-    //         if(cell.isHome){ this.rect_array_2[y][x].styles({ fill: '#FF0000', stroke: '#FF0000' }); }
-    //         if(cell.isFood){ this.rect_array_2[y][x].styles({ fill: '#0000FF', stroke: '#0000FF' }); }
-    //     }
-    // }
+    for(var y = 0; y < this.rows; y++){
+        for(var x = 0; x < this.columns; x++){
+            var cell = world.grid[y][x];
+            if(cell.isHome){ this.rect_array_2[y][x].styles({ fill: '#FF0000', stroke: '#FF0000' }); }
+            if(cell.isFood){ this.rect_array_2[y][x].styles({ fill: '#0000FF', stroke: '#0000FF' }); }
+        }
+    }
 
 }
