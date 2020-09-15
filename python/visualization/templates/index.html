@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+  <title>Foraging Ants</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0"/>
+  <link rel="icon" type="image/ico" href="./static/assets/favicon.ico"/>
+</head>
+
+<script src="./static/js/libraries/d3.v4.min.js"></script>
+<script src="./static/js/libraries/d3-selection-multi.v1.min.js"></script>
+<script src="./static/js/libraries/jquery-3.4.0.min.js"></script>
+
+<script src="./static/js/libraries/popper.min.js"></script>
+<script src="./static/js/libraries/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="./static/js/libraries/bootstrap.min.css">
+
+<script src="./static/js/schematic.js"></script>
+<script src="./static/js/index.js"></script>
+
+<script>
+
+    let params = JSON.parse( '{{ params|safe }}' );
+    console.log(params);
+
+    let agents = JSON.parse( '{{ agents|safe }}' );
+    console.log(agents);
+
+    let world_homePher = JSON.parse( '{{ world_homePher|safe }}' );
+    console.log(world_homePher);
+
+    let world_foodPher = JSON.parse( '{{ world_foodPher|safe }}' );
+    console.log(world_foodPher);
+
+    setup();
+
+</script>
