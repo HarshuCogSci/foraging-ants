@@ -18,19 +18,34 @@
 <script src="./static/js/schematic.js"></script>
 <script src="./static/js/index.js"></script>
 
+<body>
+  <div class="container-fluid"></div>
+      <div class="row">
+          <div id='size-div' class="col-md-8">
+            <div style='position: relative; display: inline-block;'>
+                <div > <svg id = 'background_layer'></svg> </div>
+                <div style='position: absolute; top: 0; left: 0;'> <svg id = 'foreground_layer'></svg> </div>
+            </div>
+          </div>          
+        </div>
+
+        <div class="row my-2">
+            <div class="col-md-12 text-center">
+                <button class="btn btn-primary" onclick="prev()">Prev</button>
+                <button class="btn btn-primary" onclick="next()">Next</button>
+                Index: <span id="index"></span>
+            </div>
+        </div>
+
+  </div>
+</body>
+
 <script>
 
-    let params = JSON.parse( '{{ params|safe }}' );
-    console.log(params);
-
-    let agents = JSON.parse( '{{ agents|safe }}' );
-    console.log(agents);
-
-    let world_homePher = JSON.parse( '{{ world_homePher|safe }}' );
-    console.log(world_homePher);
-
-    let world_foodPher = JSON.parse( '{{ world_foodPher|safe }}' );
-    console.log(world_foodPher);
+    let params_flask = JSON.parse( '{{ params|safe }}' );
+    let agents_flask = JSON.parse( '{{ agents|safe }}' );
+    let world_homePher_flask = JSON.parse( '{{ world_homePher|safe }}' );
+    let world_foodPher_flask = JSON.parse( '{{ world_foodPher|safe }}' );
 
     setup();
 
