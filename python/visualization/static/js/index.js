@@ -8,6 +8,7 @@ let data = null;
 let index = 0;
 
 let render_object = null;
+let timer = null;
 
 /*****************************************************************/ 
 
@@ -47,7 +48,7 @@ function render(){
 /*****************************************************************/ 
 
 function next(){
-    if(index == (stepsCount - 1)){ return }
+    if(index == (stepsCount - 1)){ clearInterval(timer); index = 0; render(); return }
     index++; render();
 }
 
@@ -58,6 +59,12 @@ function prev(){
 
 function reset(){
     index = 0; render();
+}
+
+/*****************************************************************/ 
+
+function play(){
+    timer = setInterval(function(){ next(); }, 10);
 }
 
 /*****************************************************************/ 
@@ -87,15 +94,15 @@ function update_render_object(index){
 
     for(let row = 0; row < height; row++){
         for(let column = 0; column < width; column++){
-            render_object.grid[row][column].homePher = world_homePher_flask.data[index][row*width + column];
-            render_object.grid[row][column].foodPher = world_foodPher_flask.data[index][row*width + column];
+            render_object.grid[row][column].homePher = world_homePher_flask[row*width + column][index];
+            render_object.grid[row][column].foodPher = world_foodPher_flask[row*width + column][index];
         }
     }
 
     for(let i = 0; i < antCount; i++){
-        render_object.agents[i].x = agents_flask[i].data[index][1];
-        render_object.agents[i].y = agents_flask[i].data[index][0];
-        render_object.agents[i].dir = agents_flask[i].data[index][2];
-        render_object.agents[i].hasFood = agents_flask[i].data[index][5];
+        render_object.agents[i].x = agents_flask[i].column[index];
+        render_object.agents[i].y = agents_flask[i].row[index];
+        render_object.agents[i].dir = agents_flask[i].dir[index];
+        render_object.agents[i].hasFood = agents_flask[i].hasFood[index];
     }
 }
