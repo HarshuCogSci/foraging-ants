@@ -79,8 +79,11 @@ def read_params_file():
 
 params = json.dumps( read_params_file() )
 agents_data = json.dumps(  read_agents_data() )
-world_homePher_data = json.dumps( read_world_homePher_data() )
-world_foodPher_data = json.dumps( read_world_foodPher_data() )
+# world_homePher_data = json.dumps( read_world_homePher_data() )
+# world_foodPher_data = json.dumps( read_world_foodPher_data() )
+
+world_homePher_data = json.dumps( {} )
+world_foodPher_data = json.dumps( {} )
 
 @app.route('/')
 def index():

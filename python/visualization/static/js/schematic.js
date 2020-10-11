@@ -9,7 +9,8 @@ function Schematic(){
     var temp = [0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75];
     this.angles = temp.map(d => { return d*180 });
 
-    this.showAgents = true;
+    this.displayAgents = true;
+    this.displayPheromones = true;
 }
 
 /******************************************************************************/
@@ -48,6 +49,7 @@ Schematic.prototype.setup = function(params){
     for(var i = 0; i < params.antCount; i++){
         this.agents_array[i] = this.foreground.append('g');
         this.agents_array[i].append('path').attrs({ d: 'M ' +(-0.35*box_size)+ ' ' +(0.5*box_size)+ ' L ' +(0*box_size)+ ' ' +(-0.5*box_size)+ ' L ' +(0.35*box_size)+ ' ' +(0.5*box_size)+ ' z' }).styles({ fill: 'black', stroke: 'black' });
+        this.agents_array[i].append('circle').attrs({ cx: 0, cy: 0, r: 0.5*box_size }).styles({ 'fill': 'none', 'stroke': 'white', 'stroke-width': 2 });
     }
 
     this.reset();
@@ -71,11 +73,13 @@ Schematic.prototype.reset = function(){
 Schematic.prototype.update = function(world){
 
     // Displaying cell pheromone levels
-    for(var y = 0; y < this.rows; y++){
-        for(var x = 0; x < this.columns; x++){
-            var cell = world.grid[y][x];
-            var colour = d3.rgb(255*cell.homePher, 0, 255*cell.foodPher);
-            this.rect_array_1[y][x].styles({ fill: colour });
+    if(this.displayPheromones){
+        for(var y = 0; y < this.rows; y++){
+            for(var x = 0; x < this.columns; x++){
+                var cell = world.grid[y][x];
+                var colour = d3.rgb(255*cell.homePher, 0, 255*cell.foodPher);
+                this.rect_array_1[y][x].styles({ fill: colour });
+            }
         }
     }
 
@@ -87,7 +91,13 @@ Schematic.prototype.update = function(world){
     }
 
     // Dispalying agents
-    if(this.showAgents){
+    if(this.displayAgents){
+        this.agents_array.forEach(agent => {
+            agent.select('circle').styles({ 'display': 'none' });
+        })
+
+        if(focusAnt != null){ this.agents_array[focusAnt].select('circle').styles({ 'display': null }); }
+
         for(var i = 0; i < world.agents.length; i++){
             var agent = world.agents[i];
             this.agents_array[i].attrs({ 'transform': 'translate(' +((agent.x+0.5)*this.box_size)+ ',' +((agent.y+0.5)*this.box_size)+ ') rotate(' +this.angles[agent.dir]+ ')' });

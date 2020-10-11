@@ -13,8 +13,12 @@
 <script src="./static/js/libraries/popper.min.js"></script>
 <script src="./static/js/libraries/bootstrap.min.js"></script>
 
+<script src="./static/js/libraries/math.min.js"></script>
+<script src="./static/js/libraries/plotly-latest.min.js"></script>
+
 <link rel="stylesheet" href="./static/js/libraries/bootstrap.min.css">
 
+<script src="./static/js/graph.js"></script>
 <script src="./static/js/schematic.js"></script>
 <script src="./static/js/index.js"></script>
 
@@ -26,12 +30,34 @@
     </div>
 
     <div class="row my-2 mx-2">
-        <div id='size-div' class="col-md-8">
-        <div style='position: relative; display: inline-block;'>
-            <div > <svg id = 'background_layer'></svg> </div>
-            <div style='position: absolute; top: 0; left: 0;'> <svg id = 'foreground_layer'></svg> </div>
+        <div id='size-div' class="col-md-6">
+            <div style='position: relative; display: inline-block;'>
+                <div> <svg id = 'background_layer'></svg> </div>
+                <div style='position: absolute; top: 0; left: 0;'> <svg id = 'foreground_layer'></svg> </div>
+            </div>
         </div>
-        </div>          
+        
+        <div class="col-md-6">
+            <div class="text-center">
+                <span>Highlight: </span>
+                <select id="focusAnt">
+                    <option value="null">No Agent</option>
+                    <option value="0">Agent 1</option>
+                    <option value="1">Agent 2</option>
+                    <option value="2">Agent 3</option>
+                    <option value="3">Agent 4</option>
+                    <option value="4">Agent 5</option>
+                    <option value="5">Agent 6</option>
+                    <option value="6">Agent 7</option>
+                    <option value="7">Agent 8</option>
+                    <option value="8">Agent 9</option>
+                    <option value="9">Agent 10</option>
+                </select>                
+            </div>
+
+            <div id="canvas-actions"></div>
+            <div id="canvas-trips"></div>
+        </div>
     </div>
 
     <div class="my-2 text-center">
@@ -43,8 +69,11 @@
     </div>
 
     <div class="my-2 text-center">
-        <button class="btn btn-primary" onclick="prev()">Prev</button>
-        <button class="btn btn-primary" onclick="next()">Next</button>
+        <button id='prv-btn' class="btn btn-primary">Prev</button>
+        <button id='next-btn' class="btn btn-primary">Next</button>
+        <span> | </span>
+        <button class="btn btn-primary" onclick="play()">Play</button>
+        <button class="btn btn-primary" onclick="stop()">Stop</button>
     </div>
 
 </body>
